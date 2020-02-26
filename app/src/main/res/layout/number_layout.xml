@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
+    android:layout_centerHorizontal="true"
+    android:gravity="center_horizontal|center_vertical"
+    android:layout_centerVertical="true">
+
+
+    <View
+        android:layout_width="10dp"
+        android:layout_height="60dp"/>
+
+    <TextView
+        android:id="@+id/firstNum"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/myshape"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="01"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/secondNum"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:layout_toEndOf="@id/firstNum"
+        android:background="@drawable/myshape"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="02"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/thirdNum"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:layout_toEndOf="@id/secondNum"
+        android:background="@drawable/myshape"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="03"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/fourthNum"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:layout_toEndOf="@id/thirdNum"
+        android:background="@drawable/myshape"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="04"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/fifthNum"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:layout_toEndOf="@id/fourthNum"
+        android:background="@drawable/myshape"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="05"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/sixthNum"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/fifthNum"
+        android:background="@drawable/myshape"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="06"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+</LinearLayout>
