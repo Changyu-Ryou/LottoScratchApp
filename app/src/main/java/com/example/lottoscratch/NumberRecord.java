@@ -9,6 +9,7 @@ public class NumberRecord {
 
     public static class NumberEntry implements BaseColumns{
         public static final String TABLE_NAME="number";
+        public static final String TIME_STAMP="number";
         public static final String FIRST_NUMBER="number1";
         public static final String SECOND_NUMBER="number2";
         public static final String THIRD_NUMBER="number3";

@@ -5,161 +5,186 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:id="@+id/ScrollView1"
-        android:fillViewport="true"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/titleLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+
+
+            <ImageView
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="380dp"
+                android:background="@drawable/main_title"
+                android:adjustViewBounds="true"
+                />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp"
+            android:visibility="invisible"
+            android:text="Lotto Scratch"
+            android:textSize="35dp" />
+
+
+        <RelativeLayout
+            android:id="@+id/numberArray"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
+            android:layout_below="@id/title"
+            android:layout_marginTop="110dp"
+            android:gravity="center_vertical|center_horizontal">
 
             <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="60dp"
-                android:text="Lotto Scratch"
-                android:textSize="35dp" />
-
-
-            <RelativeLayout
-                android:id="@+id/numberArray"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/title"
-                android:layout_marginTop="70dp"
-                android:gravity="center_vertical|center_horizontal">
-
-                <TextView
-                    android:id="@+id/firstNum"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/myshape"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:text="01"
-                    android:textColor="#ffffff"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/secondNum"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    android:layout_toEndOf="@id/firstNum"
-                    android:background="@drawable/myshape"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:text="02"
-                    android:textColor="#ffffff"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/thirdNum"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    android:layout_toEndOf="@id/secondNum"
-                    android:background="@drawable/myshape"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:text="03"
-                    android:textColor="#ffffff"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/fourthNum"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    android:layout_toEndOf="@id/thirdNum"
-                    android:background="@drawable/myshape"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:text="04"
-                    android:textColor="#ffffff"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/fifthNum"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="20dp"
-                    android:layout_toEndOf="@id/fourthNum"
-                    android:background="@drawable/myshape"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:text="05"
-                    android:textColor="#ffffff"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/sixthNum"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@id/fifthNum"
-                    android:background="@drawable/myshape"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:text="06"
-                    android:textColor="#ffffff"
-                    android:textSize="25dp"
-                    android:textStyle="bold" />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/scratchView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/title"
-                android:layout_centerHorizontal="true"
+                android:id="@+id/firstNum"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_centerVertical="true"
-                android:layout_marginTop="40dp">
+                android:layout_marginRight="20dp"
+                android:background="@drawable/myshape"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="01"
+                android:textColor="#ffffff"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/secondNum"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:layout_toEndOf="@id/firstNum"
+                android:background="@drawable/myshape"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="02"
+                android:textColor="#ffffff"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/thirdNum"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:layout_toEndOf="@id/secondNum"
+                android:background="@drawable/myshape"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="03"
+                android:textColor="#ffffff"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/fourthNum"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:layout_toEndOf="@id/thirdNum"
+                android:background="@drawable/myshape"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="04"
+                android:textColor="#ffffff"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/fifthNum"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dp"
+                android:layout_toEndOf="@id/fourthNum"
+                android:background="@drawable/myshape"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="05"
+                android:textColor="#ffffff"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/sixthNum"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/fifthNum"
+                android:background="@drawable/myshape"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="06"
+                android:textColor="#ffffff"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
 
-                <in.myinnos.androidscratchcard.ScratchCard
-                    android:id="@+id/scratchCard"
-                    android:layout_width="330dp"
-                    android:layout_height="100dp"
-                    android:layout_centerHorizontal="true"
-                    android:visibility="invisible" />
+        </RelativeLayout>
 
-            </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/scratchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="65dp"
+            >
 
-            <Button
-                android:id="@+id/againBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/scratchView"
+
+            <in.myinnos.androidscratchcard.ScratchCard
+                android:id="@+id/scratchCard"
+                android:layout_width="330dp"
+                android:layout_height="130dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="20dp"
-                android:onClick="getNum"
-                android:text="다시 생성" />
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/againBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/scratchView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:onClick="getNum"
+            android:paddingHorizontal="20dp"
+            android:background="@drawable/btn_style"
+            android:text="새로운 번호" />
+        </RelativeLayout>
 
 
             <ListView
                 android:id="@+id/number_list"
-
+                android:layout_below="@id/titleLayout"
+                android:layout_above="@id/adView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/againBtn"
+
                 android:minHeight="500dp" />
 
 
-        </RelativeLayout>
-    </ScrollView>
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+        </com.google.android.gms.ads.AdView>
+
+    </RelativeLayout>
+
+
 </RelativeLayout>

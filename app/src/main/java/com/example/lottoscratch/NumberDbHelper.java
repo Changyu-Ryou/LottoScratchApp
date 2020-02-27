@@ -13,9 +13,10 @@ public class NumberDbHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "Number.db";
 
     private static final String SQL_CREATE_ENTRIES =
-            String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT, %s TEXT, %s TEXT, %s TEXT, %s TEXT, %s TEXT)",
+            String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s TEXT, %s TEXT, %s TEXT, %s TEXT, %s TEXT, %s TEXT, %s TEXT, %s TEXT)",
                     NumberRecord.NumberEntry.TABLE_NAME,
                     NumberRecord.NumberEntry._ID,
+                    NumberRecord.NumberEntry.TIME_STAMP,
                     NumberRecord.NumberEntry.FIRST_NUMBER,
                     NumberRecord.NumberEntry.SECOND_NUMBER,
                     NumberRecord.NumberEntry.THIRD_NUMBER,

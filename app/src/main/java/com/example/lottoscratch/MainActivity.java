@@ -19,9 +19,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
 import in.myinnos.androidscratchcard.ScratchCard;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,18 +42,22 @@ public class MainActivity extends AppCompatActivity {
 
     Random rand = new Random();
 
+    String resultNum = "";
     int[] Number = new int[6];
     long seed;
     RelativeLayout cardView;
     RelativeLayout main;
     TextView title;
     ScratchCard scratchcard;
-    String resultNum;
+    int startFlag = 0;
+
+    private NumberAdapter mAdapter;
 
     static Context mContext;
 
     static TextView[] titleText = new TextView[6];     //db 어댑터뷰 용
 
+    private AdView mAdView;
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -52,7 +65,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mContext=this;
+        AdView adView = new AdView(this);
+        adView.setAdSize(AdSize.BANNER);
+        adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+// TODO: Add adView to your view hierarchy.
+
+
+        mContext = this;
 
         cardView = findViewById(R.id.scratchView);
         main = (RelativeLayout) findViewById(R.id.main);
@@ -71,17 +100,30 @@ public class MainActivity extends AppCompatActivity {
         rand = new Random(seed);
         rand.setSeed(System.currentTimeMillis());
 
-        getNumber();            //스크레치 생성 및 새로운 번호 생성
+
 
         ListView listView = (ListView) findViewById(R.id.number_list);
         NumberDbHelper dbHelper = NumberDbHelper.getInstance(this);
         Cursor cursor = dbHelper.getReadableDatabase()
                 .query(NumberRecord.NumberEntry.TABLE_NAME, null, null,
-                        null, null, null, null);
-        NumberAdapter adapter = new NumberAdapter(this, cursor);
-        listView.setAdapter(adapter);
+                        null, null, null, NumberRecord.NumberEntry._ID + " DESC");
 
+        //NumberAdapter adapter = new NumberAdapter(this, cursor);
+        //listView.setAdapter(adapter);
+
+        mAdapter = new NumberAdapter(this, cursor);
+        listView.setAdapter(mAdapter);
+
+        getNumber();            //스크레치 생성 및 새로운 번호 생성
     }
+
+
+    private Cursor getNumberCursor() {
+        NumberDbHelper dbHelper = NumberDbHelper.getInstance(this);
+        return dbHelper.getReadableDatabase().query(NumberRecord.NumberEntry.TABLE_NAME, null,
+                null, null, null, null, NumberRecord.NumberEntry._ID + " DESC");
+    }
+
 
     private static class NumberAdapter extends CursorAdapter {
         public NumberAdapter(Context context, Cursor c) {
@@ -119,10 +161,9 @@ public class MainActivity extends AppCompatActivity {
             tviewInt[4] = Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(NumberRecord.NumberEntry.FIFTH_NUMBER)));
             tviewInt[5] = Integer.parseInt(cursor.getString(cursor.getColumnIndexOrThrow(NumberRecord.NumberEntry.SIXTH_NUMBER)));
 
-
-            for(int i=0;i<6;i++){
+            for (int i = 0; i < 6; i++) {
                 int[] colorG = new int[2];
-                System.out.println("tviewInt 값은 = "+tviewInt);
+                System.out.println("tviewInt 값은 = " + tviewInt);
 
                 if (tviewInt[i] < 11) {
                     colorG[0] = mContext.getResources().getColor(R.color.Yellow);
@@ -154,13 +195,25 @@ public class MainActivity extends AppCompatActivity {
                 titleText[i].setText(tview[i]);
             }
 
+            String timeStamp = cursor.getString(cursor.getColumnIndexOrThrow(NumberRecord.NumberEntry.TIME_STAMP));
+            TextView cnt = (TextView) view.findViewById(R.id.count);
+            cnt.setText(timeStamp);
 
+/*
+            TextView cnt = (TextView) view.findViewById(R.id.count);
+            int buff= cursor.getPosition();
+            buff++;
+            cnt.setText("No."+buff);
+*/
         }
 
 
     }
 
     public void getNumber() {
+
+
+
         resultNum = "";
         for (int i = 0; i < 6; i++) {
             Number[i] = rand.nextInt(46);     //0<= n <46
@@ -183,7 +236,6 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 6; i++) {
             //GradientDrawable bgShape = (GradientDrawable) num[i].getBackground();
             int[] colorG = new int[2];
-
 
 
             if (Number[i] < 11) {
@@ -238,12 +290,16 @@ public class MainActivity extends AppCompatActivity {
 
                 if (visiblePercent > 0.3) {
                     scratchcard.setVisibility(View.GONE);
-                    Toast.makeText(MainActivity.this, "당첨번호는\n" + resultNum + "입니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "행운번호는\n" + resultNum + "입니다.", Toast.LENGTH_SHORT).show();
+                   // if (startFlag != 0)
+                        renewList();
                 }
             }
         });
 
+
         storeNumber();
+
 
     }
 
@@ -255,8 +311,12 @@ public class MainActivity extends AppCompatActivity {
         String four = num[3].getText().toString();
         String five = num[4].getText().toString();
         String six = num[5].getText().toString();
+        SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd\nHH:mm:ss");
+        String time = sdfNow.format(new Date(System.currentTimeMillis()));
+
 
         ContentValues contentValues = new ContentValues();
+        contentValues.put(NumberRecord.NumberEntry.TIME_STAMP, time);
         contentValues.put(NumberRecord.NumberEntry.FIRST_NUMBER, one);
         contentValues.put(NumberRecord.NumberEntry.SECOND_NUMBER, two);
         contentValues.put(NumberRecord.NumberEntry.THIRD_NUMBER, three);
@@ -269,15 +329,31 @@ public class MainActivity extends AppCompatActivity {
         if (newRowId == -1) {
             Toast.makeText(this, "정보에 문제가 있습니다.", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "번호가 저장되었습니다.", Toast.LENGTH_SHORT).show();
+            if (startFlag != 0) {
+                Toast.makeText(this, "번호가 저장되었습니다.", Toast.LENGTH_SHORT).show();
+                //setResult(RESULT_OK);
+
+            } else {
+                startFlag++;
+            }
         }
 
     }
 
 
     public void getNum(View view) {          //숫자생성
-        scratchcard.setVisibility(View.GONE);
+        if(scratchcard.getVisibility()== view.VISIBLE){
+            scratchcard.setVisibility(View.GONE);
+            renewList();
+        }
+
         getNumber();
+    }
+
+    public void renewList() {            //하단 리스트 갱신
+        mAdapter.swapCursor(getNumberCursor());
 
     }
+
+
 }

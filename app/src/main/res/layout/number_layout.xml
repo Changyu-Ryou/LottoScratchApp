@@ -5,94 +5,110 @@
     android:layout_marginTop="20dp"
     android:layout_marginBottom="20dp"
     android:layout_centerHorizontal="true"
-    android:gravity="center_horizontal|center_vertical"
-    android:layout_centerVertical="true">
+   >
 
 
     <View
         android:layout_width="10dp"
         android:layout_height="60dp"/>
+    <TextView
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_gravity="start|center_vertical"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_marginLeft="30dp"
+        android:text="000000\n000"
+        android:textSize="12dp" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|center_horizontal">
 
     <TextView
         android:id="@+id/firstNum"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_centerVertical="true"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="15dp"
         android:background="@drawable/myshape"
         android:gravity="center_horizontal|center_vertical"
         android:text="01"
         android:textColor="#ffffff"
-        android:textSize="25dp"
+        android:textSize="17dp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/secondNum"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_centerVertical="true"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="15dp"
         android:layout_toEndOf="@id/firstNum"
         android:background="@drawable/myshape"
         android:gravity="center_horizontal|center_vertical"
         android:text="02"
         android:textColor="#ffffff"
-        android:textSize="25dp"
+        android:textSize="17dp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/thirdNum"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_centerVertical="true"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="15dp"
         android:layout_toEndOf="@id/secondNum"
         android:background="@drawable/myshape"
         android:gravity="center_horizontal|center_vertical"
         android:text="03"
         android:textColor="#ffffff"
-        android:textSize="25dp"
+        android:textSize="17dp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/fourthNum"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_centerVertical="true"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="15dp"
         android:layout_toEndOf="@id/thirdNum"
         android:background="@drawable/myshape"
         android:gravity="center_horizontal|center_vertical"
         android:text="04"
         android:textColor="#ffffff"
-        android:textSize="25dp"
+        android:textSize="17dp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/fifthNum"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_centerVertical="true"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="15dp"
         android:layout_toEndOf="@id/fourthNum"
         android:background="@drawable/myshape"
         android:gravity="center_horizontal|center_vertical"
         android:text="05"
         android:textColor="#ffffff"
-        android:textSize="25dp"
+        android:textSize="17dp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/sixthNum"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_centerVertical="true"
         android:layout_toEndOf="@id/fifthNum"
         android:background="@drawable/myshape"
         android:gravity="center_horizontal|center_vertical"
         android:text="06"
         android:textColor="#ffffff"
-        android:textSize="25dp"
+        android:textSize="17dp"
         android:textStyle="bold" />
 
+    </RelativeLayout>
 </LinearLayout>
