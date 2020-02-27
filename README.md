@@ -26,8 +26,8 @@
 - [x] [📗] 난수 생성 구현 (완료 ver 1.0)
 - [x] [📗] 수에 따른 배경 Shape와 color 구현 (완료 ver 1.0)
 - [ ] [🔨] 앱 전체적인 디자인
-- [ ] [🔨] 로고 제작
-- [ ] [🔒] google AdMob광고 배너 삽입 
+- [ ] [🔨] 로고 제작 
+- [x] [🔒] google AdMob광고 배너 삽입 
 - [ ] [🔓] Play Store 출시
 
   <br/> <br/>
@@ -45,7 +45,19 @@ DB 관리 생성 <br/>
   <br/>
   <br/>
   
-
+> ### ver 1.1 ( commit 2020-02-27 )  
+전체적인 디자인 개선 <br/>
+DB 출력 및 순서 변경 <br/>
+ListView 갱신을 통한 DB 출력 <br/>
+DB에 시간도 같이 저장 후 출력 <br/>
+google AdMob 하단 배너 추가 <br/>
+<img src="https://user-images.githubusercontent.com/56837413/75453270-03735a00-59b7-11ea-9833-23953ed83445.jpg" width="30%"></img> 
+<img src="https://user-images.githubusercontent.com/56837413/75453276-05d5b400-59b7-11ea-8092-763921fb89f6.gif" width="30%"></img>
+  
+  <br/>
+  <br/>
+  <br/>
+  
 
 
 
