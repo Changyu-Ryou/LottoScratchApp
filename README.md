@@ -76,6 +76,7 @@ google AdMob 하단 배너 추가 <br/>
 
 License about Scratch Card Library
 -------
+https://github.com/myinnos/AndroidScratchCard
 
     Copyright 2017 MyInnos
 
