@@ -21,13 +21,15 @@
 - [x] [💻] DB 구조 및 생성 (완료 ver 1.0)
 - [x] [💻] 스크래치 기능 구현 (완료 ver 1.0)
 - [x] [💻] DB 출력부 (완료 ver 1.0)
-- [ ] [💻] DB 삭제 기능
-- [ ] [📗] 셋팅부 구현
+- [ ] [💻] DB 삭제 기능 - 미구현
+- [ ] [📗] 셋팅부 구현 - 미구현
 - [x] [📗] 난수 생성 구현 (완료 ver 1.0)
 - [x] [📗] 수에 따른 배경 Shape와 color 구현 (완료 ver 1.0)
-- [ ] [🔨] 앱 전체적인 디자인
+- [x] [🔨] 앱 전체적인 디자인 (완료 ver 1.1)
 - [ ] [🔨] 로고 제작 
-- [x] [🔒] google AdMob광고 배너 삽입 
+- [x] [🔨] 번호 생성 가능 횟수 제어 (완료 ver 1.2)
+- [x] [🔒] google AdMob광고 배너 삽입  (완료 ver 1.1) 
+- [x] [🔒] google AdMob광고 보상형 광고 삽입 (완료 ver 1.2)
 - [ ] [🔓] Play Store 출시
 
   <br/> <br/>
@@ -53,6 +55,16 @@ DB에 시간도 같이 저장 후 출력 <br/>
 google AdMob 하단 배너 추가 <br/>
 <img src="https://user-images.githubusercontent.com/56837413/75453270-03735a00-59b7-11ea-9833-23953ed83445.jpg" width="30%"></img> 
 <img src="https://user-images.githubusercontent.com/56837413/75453276-05d5b400-59b7-11ea-8092-763921fb89f6.gif" width="30%"></img>
+  
+  <br/>
+  <br/>
+  <br/>
+  
+> ### ver 1.2 ( commit 2020-02-29 )  
+보상형 광고 추가 <br/>
+번호 생성가능 횟수 제어를 통해 광고유도 <br/>
+<img src="https://user-images.githubusercontent.com/56837413/75564940-6dabfd80-5a90-11ea-8172-c2501290e0a1.jpg" width="30%"></img> 
+<img src="https://user-images.githubusercontent.com/56837413/75564944-6e449400-5a90-11ea-9175-ecdc5bfda706.gif" width="30%"></img>
   
   <br/>
   <br/>
