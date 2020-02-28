@@ -14,175 +14,217 @@
             android:id="@+id/titleLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal">
 
 
             <ImageView
-                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="380dp"
-                android:background="@drawable/main_title"
+                android:layout_marginTop="15dp"
                 android:adjustViewBounds="true"
-                />
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="60dp"
-            android:visibility="invisible"
-            android:text="Lotto Scratch"
-            android:textSize="35dp" />
-
-
-        <RelativeLayout
-            android:id="@+id/numberArray"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/title"
-            android:layout_marginTop="110dp"
-            android:gravity="center_vertical|center_horizontal">
+                android:background="@drawable/main_title" />
 
             <TextView
-                android:id="@+id/firstNum"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/myshape"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="01"
-                android:textColor="#ffffff"
-                android:textSize="25dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/secondNum"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
-                android:layout_toEndOf="@id/firstNum"
-                android:background="@drawable/myshape"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="02"
-                android:textColor="#ffffff"
-                android:textSize="25dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/thirdNum"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
-                android:layout_toEndOf="@id/secondNum"
-                android:background="@drawable/myshape"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="03"
-                android:textColor="#ffffff"
-                android:textSize="25dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/fourthNum"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
-                android:layout_toEndOf="@id/thirdNum"
-                android:background="@drawable/myshape"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="04"
-                android:textColor="#ffffff"
-                android:textSize="25dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/fifthNum"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
-                android:layout_toEndOf="@id/fourthNum"
-                android:background="@drawable/myshape"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="05"
-                android:textColor="#ffffff"
-                android:textSize="25dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/sixthNum"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/fifthNum"
-                android:background="@drawable/myshape"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="06"
-                android:textColor="#ffffff"
-                android:textSize="25dp"
-                android:textStyle="bold" />
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/scratchView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/title"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="65dp"
-            >
-
-
-            <in.myinnos.androidscratchcard.ScratchCard
-                android:id="@+id/scratchCard"
-                android:layout_width="330dp"
-                android:layout_height="130dp"
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="60dp"
+                android:text="Lotto Scratch"
+                android:textSize="35dp"
                 android:visibility="invisible" />
 
-        </RelativeLayout>
 
-        <Button
-            android:id="@+id/againBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/scratchView"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="30dp"
-            android:onClick="getNum"
-            android:paddingHorizontal="20dp"
-            android:background="@drawable/btn_style"
-            android:text="새로운 번호" />
-        </RelativeLayout>
-
-
-            <ListView
-                android:id="@+id/number_list"
-                android:layout_below="@id/titleLayout"
-                android:layout_above="@id/adView"
+            <RelativeLayout
+                android:id="@+id/numberArray"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_marginTop="110dp"
+                android:gravity="center_vertical|center_horizontal">
 
-                android:minHeight="500dp" />
+                <TextView
+                    android:id="@+id/firstNum"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/myshape"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="01"
+                    android:textColor="#ffffff"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/secondNum"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_toEndOf="@id/firstNum"
+                    android:background="@drawable/myshape"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="02"
+                    android:textColor="#ffffff"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/thirdNum"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_toEndOf="@id/secondNum"
+                    android:background="@drawable/myshape"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="03"
+                    android:textColor="#ffffff"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/fourthNum"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_toEndOf="@id/thirdNum"
+                    android:background="@drawable/myshape"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="04"
+                    android:textColor="#ffffff"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/fifthNum"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_toEndOf="@id/fourthNum"
+                    android:background="@drawable/myshape"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="05"
+                    android:textColor="#ffffff"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/sixthNum"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@id/fifthNum"
+                    android:background="@drawable/myshape"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="06"
+                    android:textColor="#ffffff"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
 
 
-        <com.google.android.gms.ads.AdView
-            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/scratchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="65dp">
+
+
+                <in.myinnos.androidscratchcard.ScratchCard
+                    android:id="@+id/scratchCard"
+                    android:layout_width="330dp"
+                    android:layout_height="130dp"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/scratchBlock"
+                    android:layout_width="330dp"
+                    android:layout_height="130dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="남은 횟수가 없어 번호생성이 불가능합니다.\n광고를 보시면 횟수가 늘어납니다."
+                    android:textSize="18dp"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="invisible"
+                    android:background="#C0C0C0"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/scratchView"
+                android:text="남은 횟수 : 0"
+                android:textSize="15dp" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/count"
+                android:gravity="center_horizontal"
+                android:layout_centerHorizontal="true">
+
+
+
+                <Button
+                    android:id="@+id/againBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@drawable/btn_style"
+                    android:onClick="getNum"
+                    android:paddingHorizontal="20dp"
+                    android:text="새로운 번호" />
+
+                <Button
+                    android:id="@+id/adBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_toRightOf="@id/againBtn"
+                    android:background="@drawable/btn_style"
+                    android:onClick="watchAD"
+                    android:paddingHorizontal="20dp"
+                    android:text="광고보고 횟수 추가" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+        <ListView
+            android:id="@+id/number_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/adView"
+            android:layout_below="@id/titleLayout"
+
+            android:minHeight="500dp" />
+
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
-        </com.google.android.gms.ads.AdView>
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>
 
     </RelativeLayout>
 

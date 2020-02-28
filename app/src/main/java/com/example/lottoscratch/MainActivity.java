@@ -1,19 +1,24 @@
 package com.example.lottoscratch;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,6 +30,10 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdCallback;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
 import in.myinnos.androidscratchcard.ScratchCard;
 
@@ -53,11 +62,25 @@ public class MainActivity extends AppCompatActivity {
 
     private NumberAdapter mAdapter;
 
+    int count;          //남은 횟수 카운트
+    SharedPreferences preferences;      //변수 저장용
+    TextView countText;         //횟수 표기 textview
+    TextView block;
+
     static Context mContext;
 
     static TextView[] titleText = new TextView[6];     //db 어댑터뷰 용
+    SQLiteDatabase db;
+    private AdView mAdView;             //배너형 광고
+    SharedPreferences.Editor editor;
 
-    private AdView mAdView;
+    private static RewardedAd rewardedAd;          //보상형 광고
+    public static Activity activity;
+    static RewardedAdLoadCallback adLoadCallback;
+    static int adloadFlag = 0;      //로드면 1 아니면 0
+
+    int scratchORnot = 0;         //긁혔으면 1 아니면 0
+
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -65,11 +88,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        activity = this;
+
+
         AdView adView = new AdView(this);
         adView.setAdSize(AdSize.BANNER);
         adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
 
-
+        //배너형 광고
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
@@ -78,6 +104,25 @@ public class MainActivity extends AppCompatActivity {
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+
+        //보상형 광고
+        rewardedAd = new RewardedAd(this,
+                "ca-app-pub-3940256099942544/5224354917");
+        RewardedAdLoadCallback adLoadCallback = new RewardedAdLoadCallback() {
+            @Override
+            public void onRewardedAdLoaded() {
+                // Ad successfully loaded.
+            }
+
+            @Override
+            public void onRewardedAdFailedToLoad(int errorCode) {
+                // Ad failed to load.
+            }
+        };
+        rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
+
+
 // TODO: Add adView to your view hierarchy.
 
 
@@ -101,20 +146,44 @@ public class MainActivity extends AppCompatActivity {
         rand.setSeed(System.currentTimeMillis());
 
 
-
         ListView listView = (ListView) findViewById(R.id.number_list);
-        NumberDbHelper dbHelper = NumberDbHelper.getInstance(this);
+        NumberDbHelper dbHelper = NumberDbHelper.getInstance(this);         //랜덤변수들 db
         Cursor cursor = dbHelper.getReadableDatabase()
                 .query(NumberRecord.NumberEntry.TABLE_NAME, null, null,
                         null, null, null, NumberRecord.NumberEntry._ID + " DESC");
 
-        //NumberAdapter adapter = new NumberAdapter(this, cursor);
-        //listView.setAdapter(adapter);
-
         mAdapter = new NumberAdapter(this, cursor);
         listView.setAdapter(mAdapter);
 
-        getNumber();            //스크레치 생성 및 새로운 번호 생성
+        preferences = getSharedPreferences("MY_NICKNAME", Context.MODE_PRIVATE);
+
+        String buff = preferences.getString("count", "");
+        String blank = "";
+
+
+        if (buff.equals(blank)) {
+            editor = preferences.edit();
+            editor.putString("count", 6 + "");
+            editor.commit();
+            count = 6;
+        } else {
+            count = Integer.parseInt(buff);
+        }
+
+        countText = (TextView) findViewById(R.id.count);
+        countText.setText("남은 횟수: " + count);
+        //count = Integer.parseInt(preferences.getString("count", ""));
+
+        block = (TextView) findViewById(R.id.scratchBlock);
+        if (count == 0) {
+            //makeScratch();
+            block.setVisibility(View.VISIBLE);
+
+        } else {
+            block.setVisibility(View.INVISIBLE);
+            getNumber();        //스크레치 생성 및 새로운 번호 생성
+        }
+
     }
 
 
@@ -124,6 +193,78 @@ public class MainActivity extends AppCompatActivity {
                 null, null, null, null, NumberRecord.NumberEntry._ID + " DESC");
     }
 
+    public void watchAD(View view) {            //보상형 광고
+        if (rewardedAd.isLoaded()) {
+            final Activity activityContext = this;
+            RewardedAdCallback adCallback = new RewardedAdCallback() {
+                public void onRewardedAdOpened() {
+                    // Ad opened.
+                    adloadFlag = 0;
+                }
+
+                public void onRewardedAdClosed() {
+                    if (count == 0) {
+                        if (block.getVisibility() == View.VISIBLE) {
+                            block.setVisibility(View.INVISIBLE);
+
+                        }
+                    }
+
+                    count += 6;
+                    editor = preferences.edit();
+                    editor.putString("count", count + "");
+                    editor.commit();
+                    Toast.makeText(activityContext, "번호 생성 가능 횟수가 5회 증가하였습니다.", Toast.LENGTH_SHORT).show();
+                    getNumber();
+                    // Ad closed.
+                }
+
+                public void onUserEarnedReward(@NonNull RewardItem reward) {
+                    // User earned reward.
+                }
+
+                public void onRewardedAdFailedToShow(int errorCode) {
+                    // Ad failed to display
+                }
+            };
+            rewardedAd.show(activityContext, adCallback);
+        } else {
+            Log.d("TAG", "The rewarded ad wasn't loaded yet.");
+            Toast.makeText(this, "광고를 로드중에 있습니다.\n잠시후 로딩이 끝납니다.", Toast.LENGTH_SHORT).show();
+        }
+        if (adloadFlag == 1) {
+
+        } else {
+            onRewardedAdClosed();
+            adloadFlag = 1;
+        }
+    }
+
+    //보상형 광고 로드
+    public static RewardedAd createAndLoadRewardedAd() {
+        RewardedAd rewardedAd = new RewardedAd(activity,
+                "ca-app-pub-3940256099942544/5224354917");
+        RewardedAdLoadCallback adLoadCallback = new RewardedAdLoadCallback() {
+            @Override
+            public void onRewardedAdLoaded() {
+                // Ad successfully loaded.
+            }
+
+            @Override
+            public void onRewardedAdFailedToLoad(int errorCode) {
+                // Ad failed to load.
+            }
+        };
+        rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
+        return rewardedAd;
+    }
+
+    //@Override
+    public static void onRewardedAdClosed() {
+        rewardedAd = createAndLoadRewardedAd();
+        rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
+        adloadFlag = 1;
+    }
 
     private static class NumberAdapter extends CursorAdapter {
         public NumberAdapter(Context context, Cursor c) {
@@ -199,18 +340,32 @@ public class MainActivity extends AppCompatActivity {
             TextView cnt = (TextView) view.findViewById(R.id.count);
             cnt.setText(timeStamp);
 
-/*
-            TextView cnt = (TextView) view.findViewById(R.id.count);
-            int buff= cursor.getPosition();
-            buff++;
-            cnt.setText("No."+buff);
-*/
         }
 
 
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        preferences = getSharedPreferences("MY_NICKNAME", Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        editor.putString("count", count + "");
+        editor.commit();
+
+    }
+
+
     public void getNumber() {
+
+        count--;
+        countText.setText("남은 횟수: " + count);
+        editor = preferences.edit();
+        editor.putString("count", count + "");
+        editor.commit();
+
+
 
 
 
@@ -270,6 +425,18 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+
+        makeScratch();          //스크래치 생성
+
+
+        storeNumber();
+
+
+    }
+
+    public void makeScratch() {
+        scratchORnot = 0;
+
         scratchcard = new ScratchCard(this);
         final int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 330, getResources().getDisplayMetrics());
         final int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics());
@@ -290,15 +457,13 @@ public class MainActivity extends AppCompatActivity {
 
                 if (visiblePercent > 0.3) {
                     scratchcard.setVisibility(View.GONE);
+                    scratchORnot = 1;
                     Toast.makeText(MainActivity.this, "행운번호는\n" + resultNum + "입니다.", Toast.LENGTH_SHORT).show();
-                   // if (startFlag != 0)
-                        renewList();
+                    // if (startFlag != 0)
+                    renewList();
                 }
             }
         });
-
-
-        storeNumber();
 
 
     }
@@ -313,7 +478,7 @@ public class MainActivity extends AppCompatActivity {
         String six = num[5].getText().toString();
         SimpleDateFormat sdfNow = new SimpleDateFormat("yyyy/MM/dd\nHH:mm:ss");
         String time = sdfNow.format(new Date(System.currentTimeMillis()));
-
+        String like = "13";
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(NumberRecord.NumberEntry.TIME_STAMP, time);
@@ -323,6 +488,7 @@ public class MainActivity extends AppCompatActivity {
         contentValues.put(NumberRecord.NumberEntry.FOURTH_NUMBER, four);
         contentValues.put(NumberRecord.NumberEntry.FIFTH_NUMBER, five);
         contentValues.put(NumberRecord.NumberEntry.SIXTH_NUMBER, six);
+        contentValues.put(NumberRecord.NumberEntry.LIKE_NUMBER, like);
 
         SQLiteDatabase db = NumberDbHelper.getInstance(this).getWritableDatabase();
         long newRowId = db.insert(NumberRecord.NumberEntry.TABLE_NAME, null, contentValues);
@@ -342,12 +508,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void getNum(View view) {          //숫자생성
-        if(scratchcard.getVisibility()== view.VISIBLE){
-            scratchcard.setVisibility(View.GONE);
-            renewList();
-        }
 
-        getNumber();
+
+        if (scratchcard.getVisibility() == view.VISIBLE) {
+            //scratchcard.setVisibility(View.GONE);
+            Toast.makeText(this, "아직 스크래치가 다 긁히지 않았습니다.\n회색 부분을 문질러 없애주세요.", Toast.LENGTH_SHORT).show();
+        }else {
+            //renewList();
+
+            if (count <= 0) {
+                //Toast.make();
+                block.setVisibility(View.VISIBLE);
+            } else {
+                block.setVisibility(View.INVISIBLE);
+                getNumber();
+            }
+        }
     }
 
     public void renewList() {            //하단 리스트 갱신

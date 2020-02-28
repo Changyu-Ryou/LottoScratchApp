@@ -16,7 +16,7 @@ public class NumberRecord {
         public static final String FOURTH_NUMBER="number4";
         public static final String FIFTH_NUMBER="number5";
         public static final String SIXTH_NUMBER="number6";
-        public static final String LIKE_NUMBER="like";
+        public static final String LIKE_NUMBER="number7";
 
     }
 
