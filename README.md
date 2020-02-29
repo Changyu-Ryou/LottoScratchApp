@@ -26,11 +26,11 @@
 - [x] [📗] 난수 생성 구현 (완료 ver 1.0)
 - [x] [📗] 수에 따른 배경 Shape와 color 구현 (완료 ver 1.0)
 - [x] [🔨] 앱 전체적인 디자인 (완료 ver 1.1)
-- [ ] [🔨] 로고 제작 
+- [x] [🔨] 로고 제작 
 - [x] [🔨] 번호 생성 가능 횟수 제어 (완료 ver 1.2)
 - [x] [🔒] google AdMob광고 배너 삽입  (완료 ver 1.1) 
 - [x] [🔒] google AdMob광고 보상형 광고 삽입 (완료 ver 1.2)
-- [ ] [🔓] Play Store 출시
+- [x] [🔓] Play Store 출시
 
   <br/> <br/>
   
@@ -70,7 +70,26 @@ google AdMob 하단 배너 추가 <br/>
   <br/>
   <br/>
   
+> ### ver 1.3 ( commit 2020-02-29 )  
+출시를 위한 세부 내용 수정 <br/>
+AdMob ID, package name, label 등 수정 완료 후 play store 출시를 위해 제출 함 <br/>
+로고 아이콘 등록 <br/>
+앱 소개 이미지 제작 <br/>
 
+> 로고 <br/>
+<img src="https://user-images.githubusercontent.com/56837413/75607512-465e3a80-5b3b-11ea-8125-488a2ece4f29.png" width="30%"></img>  <br/> <br/>
+
+> 소개 이미지 <br/>
+
+<img src="https://user-images.githubusercontent.com/56837413/75607518-4d854880-5b3b-11ea-8b8a-b80bde8cac13.png" width="91%"></img> <br/>
+<img src="https://user-images.githubusercontent.com/56837413/75607513-48c09480-5b3b-11ea-8756-6e4a49085055.png" width="30%"></img>
+<img src="https://user-images.githubusercontent.com/56837413/75607515-49592b00-5b3b-11ea-8375-fbdcee172fb3.png" width="30%"></img>
+<img src="https://user-images.githubusercontent.com/56837413/75607516-4a8a5800-5b3b-11ea-9b91-8da0e414377a.png" width="30%"></img>
+  
+  <br/>
+  <br/>
+  <br/>
+  
 
 
 
