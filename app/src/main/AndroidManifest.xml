@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.lottoscratch">
+    package="com.DevR.lottoscratch">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="로또 스크래치-번호자동생성기"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
+            android:value="ca-app-pub-7742126992195898~8662773016"/>
 
 
-        <activity android:name=".MainActivity">
+        <activity android:name="com.DevR.lottoscratch.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
